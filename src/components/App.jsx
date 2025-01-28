@@ -1,19 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Ratings from './components/Ratings';
-import Dashboard from './components/Dashboard'; // Make sure this exists
-import Navbar from './components/Navbar'; // If you have a Navbar
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Dashboard from './screens/Dashboard';
+import ProductScreen from './screens/ProductScreen';
+import UserScreen from './screens/UserScreen';
 
-function App() {
-    return (
-        <Router>
-            <Navbar />  {/* Make sure this is included */}
-            <Routes>
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/ratings" element={<Ratings />} />
-            </Routes>
-        </Router>
-    );
-}
+const App = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/dashboard" element={<Dashboard products={productsData} users={usersData} />} />
+        <Route path="/product/:id" element={<ProductScreen product={productData} />} />
+        <Route path="/user/:id" element={<UserScreen user={userData} />} />
+      </Routes>
+    </Router>
+  );
+};
 
 export default App;
